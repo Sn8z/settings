@@ -34,6 +34,15 @@ sudo eopkg bi -y --ignore-safety https://raw.githubusercontent.com/solus-project
 sudo eopkg it -y spotify*.eopkg
 sudo rm spotify*.eopkg
 
+# Dependencies for running Battle.net games in Lutris
+echo "Installing mscorefonts..."
+sudo eopkg bi -y --ignore-safety https://raw.githubusercontent.com/solus-project/3rd-party/master/desktop/font/mscorefonts/pspec.xml
+sudo eopkg it -y mscorefonts*.eopkg
+sudo rm mscorefonts*.eopkg
+
+echo "Installing dependencies for Bnet games running with Lutris..."
+sudo eopkg it -y libgnutls libgnutls-devel libgnutls-32bit libgnutls-32bit-devel openldap-devel openldap-32bit-devel libgpg-error-devel libgpg-error-32bit libgpg-error-32bit-devel sqlite3 sqlite3-32bit
+
 # Development
 echo "Installing development related software..."
 sudo eopkg it -y -c system.devel
@@ -86,7 +95,7 @@ read -p "Do you want to reboot? (yes/no)" -r
 echo
 if [[ $REPLY =~ ^[Yy][Ee][Ss]$ ]]
 then
-  systemctl reboot
+  systemctl reboot -i
 else
 	echo "You choose not to reboot, things may not work as expected until you do."
 fi
