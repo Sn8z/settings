@@ -49,6 +49,7 @@ sudo eopkg it -y -c system.devel
 sudo eopkg it -y git
 sudo eopkg it -y vscode
 sudo eopkg it -y nodejs
+sudo eopkg it -y yarn
 sudo eopkg it -y etcher
 
 # Drivers
