@@ -59,29 +59,36 @@ sudo eopkg it -y razer-drivers
 sudo eopkg it -y polychromatic
 sudo eopkg it -y piper
 
-# Themes & Icons
-echo "Installing themes & icons..."
-sudo eopkg it -y arc-gtk-theme
-gsettings set org.gnome.desktop.interface gtk-theme 'Arc-Dark'
-sudo eopkg it -y papirus-icon-theme
-gsettings set org.gnome.desktop.interface icon-theme 'Papirus'
-
 # Set chrome as default browser
 echo "Setting default applications..."
 xdg-settings set default-web-browser google-chrome.desktop
 
-# Disable mouse acceleration
-echo "Disabling mouse acceleration..."
-gsettings set org.gnome.desktop.peripherals.mouse accel-profile flat
+read -p "Do you want to set up Gnome/Budgie? (yes/no)" -r
+echo
+if [[ $REPLY =~ ^[Yy][Ee][Ss]$ ]]
+then
+  # Themes & Icons
+  echo "Installing themes & icons..."
+  sudo eopkg it -y arc-gtk-theme
+  gsettings set org.gnome.desktop.interface gtk-theme 'Arc-Dark'
+  sudo eopkg it -y papirus-icon-theme
+  gsettings set org.gnome.desktop.interface icon-theme 'Papirus'
 
-# Disabling screensaver
-echo "Disabling screensaver..."
-gsettings set org.gnome.desktop.session idle-delay 0
+  # Disable mouse acceleration
+  echo "Disabling mouse acceleration..."
+  gsettings set org.gnome.desktop.peripherals.mouse accel-profile flat
 
-# Disabling workspaces
-echo "Disabling workspaces..."
-gsettings set org.gnome.shell.overrides dynamic-workspaces false
-gsettings set org.gnome.desktop.wm.preferences num-workspaces 1
+  # Disabling screensaver
+  echo "Disabling screensaver..."
+  gsettings set org.gnome.desktop.session idle-delay 0
+
+  # Disabling workspaces
+  echo "Disabling workspaces..."
+  gsettings set org.gnome.shell.overrides dynamic-workspaces false
+  gsettings set org.gnome.desktop.wm.preferences num-workspaces 1
+else
+	echo "You choose not to configure Gnome/Budgie, make sure you set up appearance/mouse/power/workspaces on your own."
+fi
 
 # Update boot manager
 echo "Updating boot manager..."
