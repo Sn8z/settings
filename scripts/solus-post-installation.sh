@@ -20,6 +20,7 @@ sudo eopkg it -y discord
 sudo eopkg it -y gnome-tweaks
 sudo eopkg it -y steam
 sudo eopkg it -y mscorefonts
+sudo eopkg it -y wine wine-devel wine-32bit-devel winetricks
 sudo eopkg it -y lutris
 sudo eopkg it -y obs-studio
 
